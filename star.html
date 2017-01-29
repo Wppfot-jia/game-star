@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html onclick="showStar(event)">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+        </style>
+        <script type="text/javascript">
+            window.onload = init();
+            var num = 0;
+            function init(){
+                window.alert("请用鼠标页面上点击,构建只属于你的星系图!");
+            }
+            
+
+            function showStar(event){
+                //alert("width = " + event.clientX +" "+"height = " + event.clientY)
+                var img_obj = document.createElement("img");
+                img_obj.src = "./img/xingxing.gif";
+                document.body.appendChild(img_obj);
+                //这三行代码完成添加img
+                img_obj.style.position = "absolute";
+                img_obj.style.width = sizeRandom(5,10) + "px";
+                img_obj.style.left = event.clientX - (img_obj.width/2) + "px";
+                img_obj.style.top = event.clientY - (img_obj.height/2) + "px";
+                num++;
+                num %= 50; 
+                if(num == 0){
+                    var img_obj = document.createElement("img");
+                    img_obj.src = "./img/xingxing.gif";
+                    document.body.appendChild(img_obj);
+                    //这三行代码完成添加img
+                    img_obj.style.position = "absolute";
+                    img_obj.style.width = "300px";
+                    img_obj.style.left = event.clientX - (img_obj.width/2) + "px";
+                    img_obj.style.top = event.clientY - (img_obj.height/2) + "px";
+                }
+            }
+            function sizeRandom(min,max){
+                var size = Math.random()*(max - min) + min;
+                size = Math.floor(parseFloat(size));
+                return size;
+            }
+
+        </script>
+    </head>
+    <body bgcolor="black">
+    </body>
+</html>
