@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+            body{
+                background-color:black;
+            }
+            #my_canvas{
+                border:2px solid red;
+                margin-left:20%;
+                margin-top:100px;
+            }
+        </style>
+    </head>
+    <body onkeydown="moveBall(event)">
+        <canvas width="700px" height="600px" id="my_canvas">
+        <script type="text/javascript">
+            var my_canvas = document.getElementById("my_canvas");
+            var my_huabi = my_canvas.getContext("2d");
+
+            var ball_x = 50;
+            var ball_y = 50;
+            var ball_r = 30;
+
+            function my_ball(x,y){
+                my_huabi.fillStyle = "blue";
+                my_huabi.beginPath();
+                my_huabi.arc(x,y,ball_r,0,2 * Math.PI);
+                my_huabi.fill();
+            }
+            my_ball(ball_x,ball_y);
+
+            var my_ball_x_fx = true;
+            var my_ball_y_fx = true;
+            var my_ball_speed = 1;
+            
+            window.setInterval("moveBall()",5);
+            
+            function moveBall(){
+                if(my_ball_x_fx){
+                    ball_x += my_ball_speed;
+                    if(ball_x > 700-ball_r / 2){
+                        my_ball_x_fx = false;
+                    }
+                }else{
+                    ball_x -= my_ball_speed;
+                    if(ball_x < ball_r - 10){
+                        my_ball_x_fx = true;
+                    }
+                }
+                if(my_ball_y_fx){
+                    ball_y += my_ball_speed;
+                    if(ball_y > 600 - ball_r / 2){
+                        my_ball_y_fx = false;
+                    }
+                }else{
+                    ball_y -= my_ball_speed;
+                    if(ball_y < ball_r - 10){
+                        my_ball_y_fx = true;
+                    }
+                }
+                my_huabi.clearRect(0,0,700,600);
+                my_ball(ball_x,ball_y);
+            } 
+
+        </script>
+    </body>
+</html>
